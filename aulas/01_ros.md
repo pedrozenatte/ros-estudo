@@ -1,24 +1,27 @@
 # O que é ROS - Robotic Operating System
 
-O ROS não é um Sistema Operacional, e sim um "Middleware de Comunicação"
+O ROS **não é um Sistema Operacional**, mas sim um **middleware de comunicação**.
 
-### O que é um MiddleWare?
-É algo que "fica no meio" entre as aplicões e o SO do robô (linux, já que o ROS 1 só funciona em linux)
+### O que é um Middleware?
+É uma camada que fica **entre as aplicações e o sistema operacional**, isto é, "fica no meio" (no caso do ROS1, o SO é o Linux), o que permite que diferentes partes do sistema se comuniquem de forma padronizada.
 
 ![Diagrama ROS](../imagens/diagrama_ros.png)
 
 O que esse diagrama representa:
+#### Componentes principais
 
-- Os ROS Nodes são os programas (ex: controle do drone, câmera, sensores).
-- O ROS Master funciona como um “central de registro” — ele não envia dados, só conecta quem quer conversar.
-- Os Topics são canais de comunicação onde dados são publicados (ex: imagem da câmera, posição).
-- Os Services são chamadas diretas entre nodes (tipo pedido/resposta).
+- **Nodes**: programas independentes (ex: controle do drone, câmera, sensores).
+- **ROS Master**: responsável por registrar e conectar os nodes (não transmite dados).
+- **Topics**: canais de comunicação contínua (stream de dados).
+- **Services**: comunicação do tipo requisição/resposta.
 
-Diante disso, como funciona na prática:
-1) Um node avisa o ROS Master: “eu publico neste tópico” ou “quero me inscrever”.
-2) O Master conecta os nodes interessados.
+#### Funcionamento geral
 
-Depois disso, os nodes se comunicam diretamente entre si (sem passar pelo Master).
+1. Um node informa ao ROS Master:
+   - “eu publico neste tópico”
+   - ou “quero me inscrever neste tópico”
+2. O Master conecta os nodes interessados.
+3. Após isso, os nodes se comunicam **diretamente entre si**, sem passar pelo Master.
 
 #### Para melhor entendimento, vamos fazer uma analogia com um drone:
 
@@ -75,3 +78,29 @@ Outro node responde:
 Isso é tipo uma função que você chama e espera resposta
 
 ---
+
+Sendo assim, podemos dizer que o ROS é um framework que atua sobre o Linux para a padronização de mensagens em sistemas robóticos. 
+Ele é um sistema de padronização que permite o compartilhamento de soluções, isto é, uma camada de abstração para uma padronização.  
+
+### ROS Master
+
+O ROS Master é o responsável por:
+- registrar nodes
+- conectar publishers e subscribers
+
+Ele é essencial para o funcionamento do sistema.
+
+**Limitação do ROS1**:  
+Se o Master parar, toda a comunicação para, ou seja, se o computador que está com o ROS Master do robô parar, tudo para.
+
+
+**Para que serve o ROS?**
+- Padronização do desenvolvimento.
+- Distribuição em múltiplos processadores embarcados em um único robô.
+- Re-aproveitamento de algoritmos/soluções.
+- Comunidade = suporte = facilidade (ecossistema ROS). 
+
+### Ecossistema ROS
+
+O ROS possui uma grande comunidade e diversas bibliotecas disponíveis.
+**Site oficial: http://ros.org**
