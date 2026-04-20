@@ -102,5 +102,20 @@ rostopic pub -r <freq> </nome_tópico> <tipo_msg> <valores_campos_msg>
 ```
 A frequência é em hz, então se \<freq> = 10, teremos a mensagem sendo publicada 10 vezes por segundo. 
 
+---
+
+15) Abrir a ferramenta *rqt*, basta rodar o comando: 
+```bash
+rqt
+```
+
+---
+
+16) Verificar qual Nó está publicando/subscrevendo em qual tópico de forma gráfica:
+```bash
+rqt_graph
+```
+OBS: Também é com a ferramenta *rqt*.
+
 
 ---
