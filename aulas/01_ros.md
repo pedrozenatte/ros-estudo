@@ -104,3 +104,5 @@ Se o Master parar, toda a comunicação para, ou seja, se o computador que está
 
 O ROS possui uma grande comunidade e diversas bibliotecas disponíveis.
 **Site oficial: http://ros.org**
+
+**Documentação oficial: https://wiki.ros.org/**
