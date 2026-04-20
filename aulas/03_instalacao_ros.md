@@ -41,3 +41,8 @@ roscore
 ```
 
 Se tudo estiver correto, o ROS Master será iniciado e o sistema estará pronto para uso.
+
+Verificar a versão instalada: 
+```bash
+rosversion -d
+```
