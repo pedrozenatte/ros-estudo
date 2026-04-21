@@ -80,7 +80,7 @@ Antes de criar novos pacotes, é preciso criar uma Área de Trabalho (Workspace)
 #### Criar um workspace catkin
 1) Criar uma pasta "catkin_ws" no diretório \<home> do usuário Linux:
 ```bash
-mkdir -p /catkin_wa/src
+mkdir -p catkin_ws/src
 cd /catkin_ws # É um nome default
 ```
 OBS: Para verificar qual pasta estamos (o caminho da pasta), podemos utilizar o comando:
@@ -193,7 +193,6 @@ OBS: Após o comando *catkin_make*, deve ser reconhecido o novo nó:
 ####
 #### Running command: "make -j8 -l8" in "/home/pedro/catkin_ws/build"
 ####
-
 ```
 
 ##### Como executar o nó criado ("talker.py") no pacote beginner_tutorial?
@@ -201,7 +200,11 @@ OBS: Após o comando *catkin_make*, deve ser reconhecido o novo nó:
 rosrun beginner_tutorial talker.py
 ```
 
-
+**ATENÇÃO:** Sempre que for rodar o nó criado, é necessário estar no ambiente de trabalho (a pasta workspace) e rodar o comando: 
+```bash
+source devel/setup.bash
+```
+Se não fizer isso, o ROS nem reconhece o pacote criado. 
 
 
 ---
