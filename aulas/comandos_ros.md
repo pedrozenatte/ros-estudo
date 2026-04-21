@@ -117,5 +117,78 @@ rqt_graph
 ```
 OBS: Também é com a ferramenta *rqt*.
 
+---
+
+17) Para listar todos os serviços: 
+```bash
+rosservice list
+```
+Esse comando mostra todos os serviços registrados no ROS Master naquele momento.
+
+---
+
+18) Para obter a informação de algum serviço
+```bash
+rosservice info </nome_serviço>
+```
+Esse comando revela qual node está oferecendo o serviço, o tipo do serviço e os argumentos envolvidos. 
+
+---
+
+19) Para chamar um serviço:
+```bash
+rosservice call </nome_serviço>
+```
+
+---
+
+20) Listar todos os tipos de serviços que tem no ROS:
+```bash
+rossrv list
+```
+
+---
+
+21) Visualizar a estrutura de um serviço:
+```bash
+rossrv show <type>
+```
+
+---
+
+22) Verificar a lista de todos os parâmetros:
+```bash
+rosparam list
+```
+
+23) Obter o valor de um parâmetro:
+```bash
+rosparam get </nome_parâmetro>
+```
+
+---
+
+24) Setar o valor de um parâmetro:
+```bash
+rosparam set </nome_parâmetro> <valor>
+```
+
+---
+
+25) Ver e Salvar todos os parâmetros do ROS:
+```bash
+# Para ver
+rosparam dump
+
+# Para salvar em um arquivo
+rosparam dump params.yaml
+```
+
+---
+
+26) Carregar um arquivo com os parâmetros:
+```bash
+rosparam load params.yaml
+```
 
 ---
