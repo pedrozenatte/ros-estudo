@@ -125,7 +125,7 @@ catkin_create_pkg <nome_pacote> <dependência1> <dependência2> ... <dependênci
 catkin_create_pkg beginner_tutorial std_msgs rospy roscpp
 ```
 
-Feito isso. teremos, dentro da pasta criada, que no nosso exemplo é beginner_tutorial, teremos: 
+Feito isso, dentro da pasta criada, que no nosso exemplo é beginner_tutorial, teremos que ter a seguinte estrutura: 
 begginer_tutorial/
  ├── CMakeLists.txt
  ├── include
@@ -139,10 +139,67 @@ Já o package.xml é o arquivo de configuração do pacote.
 
 
 #### Criar um Nó em Python
-Primeiro, vamos entrar na pasta do pacote (nesse caso, begginner_tutorial):
+Primeiro, vamos entrar na pasta do pacote (nesse caso, beginner_tutorial):
+```bash
+cd beginner_tutorial
+```
 
+Agora, se não existe a pasta scripts não existe ainda, criar ela:
+```bash
+mkdir scripts
+```
 
+Vamos entrar nela e criar o nó
+```bash
+cd scripts
+wget https://raw.githubusercontent.com/ros/ros_tutorials/noetic-devel/rospy_tutorials/001_talker_listener/talker.py
 
+# Para dar permissão ao arquivo
+chmod +x talker.py
+```
+OBS: Esse wget baixa um arquivo chamado *talker.py*, que está representando o nosso nó, ou seja, o nó python é um programa em python. 
+
+Agora precisamos realizar a **Instalação de executáveis do pacote**, que é informar o que foi feito usando o CMakeLists.txt (gedit) na pasta principal do pacote incluindo as seguintes linhas no final:
+```text
+catkin_install_python(PROGRAMS
+  scripts/talker.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+```
+
+**PERGUNTINHA:** Por que fazemos isso? 
+O comando catkin_install_python é uma regra de instalação do sistema de build do ROS (catkin) utilizada para registrar scripts como executáveis oficiais de um pacote. Ao utilizá-lo, informamos ao ROS que aquele arquivo deve ser tratado como parte integrante do pacote e, portanto, copiado para um diretório padrão durante o processo de instalação (catkin_make install). Sem essa etapa, o script continua existindo apenas dentro da pasta scripts do workspace e funciona localmente, mas não está formalmente instalado nem padronizado dentro da estrutura do ROS. Já com essa regra, o script passa a ser reconhecido como um executável do pacote, permitindo melhor organização, portabilidade e uso em outros ambientes ou sistemas.
+Para cada nó que criarmos, precisa ser feito isso.
+
+Agora, vamos adicionar este workspace ao ROS para que rospack, roscd, rosls e rosrun o reconheçam: 
+```bash
+cd catkin_ws
+catkin_make
+# Permitindo que o rosrun reconheça o pacote
+source devel/setup.bash
+```
+OBS: Após o comando *catkin_make*, deve ser reconhecido o novo nó: 
+```text
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- ~~  traversing 1 packages in topological order:
+-- ~~  - beginner_tutorial
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- +++ processing catkin package: 'beginner_tutorial'
+-- ==> add_subdirectory(beginner_tutorial)
+-- Installing devel-space wrapper /home/pedro/catkin_ws/src/beginner_tutorial/scripts/talker.py to /home/pedro/catkin_ws/devel/lib/beginner_tutorial
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/pedro/catkin_ws/build
+####
+#### Running command: "make -j8 -l8" in "/home/pedro/catkin_ws/build"
+####
+
+```
+
+##### Como executar o nó criado ("talker.py") no pacote beginner_tutorial?
+```bash
+rosrun beginner_tutorial talker.py
+```
 
 
 
@@ -236,4 +293,5 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 ```
 Basta comentá-las. 
+
 ---
