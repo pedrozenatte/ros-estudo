@@ -191,4 +191,7 @@ rosparam dump params.yaml
 rosparam load params.yaml
 ```
 
+FALTA COMANDOS A PARTIR DA AULA 08
+
+
 ---

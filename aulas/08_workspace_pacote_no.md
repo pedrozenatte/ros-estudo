@@ -1,4 +1,4 @@
-# Criando Workspace, Pacote e Nó
+# Criando Workspace, Pacote e Nó (publisher)
 
 Para desenvolver aplicações próprias no ROS, é necessário entender como estruturar um projeto dentro do seu ecossistema. O ROS organiza o código em **workspaces**, que contêm **pacotes**, e dentro desses pacotes estão os **nodes**, além de possíveis mensagens e serviços associados.
 
@@ -155,7 +155,7 @@ Já o package.xml é o arquivo de configuração do pacote.
 OBS: O scripts normalmente é criado de forma manual. 
 
 
-#### Criar um Nó em Python
+#### Criar um Nó em Python do tipo Publisher
 Um node em ROS nada mais é do que um programa executável, no caso de Python, é um script em Python.
 Primeiro, vamos entrar na pasta do pacote (nesse caso, beginner_tutorial):
 ```bash
