@@ -1,11 +1,13 @@
 # Criando Workspace, Pacote e Nó
 
-Vamos entender como criar nossos próprios pacotes. 
+Para desenvolver aplicações próprias no ROS, é necessário entender como estruturar um projeto dentro do seu ecossistema. O ROS organiza o código em **workspaces**, que contêm **pacotes**, e dentro desses pacotes estão os **nodes**, além de possíveis mensagens e serviços associados.
 
 ## Pacotes 
-Pacotes são agrupamentos de código fonte (programas) que descrevem nós, serviços e mensagens correlatos. 
-Um exemplo de pacote é o *turtlesim* - que contém nós, mensagens e serviços do simulador da turtle. 
-Outros tipos de pacotes e o **rospy** e **roscpp**, que são pacotes de programação em Python e C/C++. 
+Pacotes são a unidade básica de organização no ROS. Eles agrupam tudo que está relacionado a uma funcionalidade específica, como código-fonte, definições de mensagens, serviços e configurações.
+Um exemplo é o pacote **turtlesim**, que contém os nodes, serviços e mensagens utilizados na simulação da tartaruga. Outros exemplos importantes são os pacotes **rospy** e **roscpp**, que fornecem suporte para desenvolvimento em Python e C/C++, respectivamente.
+
+Para gerenciar e explorar pacotes instalados no sistema, utilizamos a ferramenta `rospack`, que permite acessar informações importantes sobre eles.
+
 
 ### Comandos de pacotes do ROS: 
 #### Rospack
@@ -18,7 +20,11 @@ rospack <comando>
 rospack <comando> <nome_pacote>
 ```
 
-Quando usamos o <tab><tab> temos uma lista de algumas 30 opções de comandos, então vamos abordar os mais utilizados. 
+Ao utilizar:
+```bash
+rospack <tab><tab>
+```
+é possível visualizar diversos comandos disponíveis. Entre os principais, temos:
 
 1) Listar nomes e pastas:
 ```bash
@@ -62,7 +68,7 @@ rospack depends1 <nome_pacote>
 rospack help
 ```
 
-#### Roscd
+#### Roscd (navegação entre pacotes)
 1) Mudar (change) a pasta (directory) onde está o pacote: 
 ```bash
 roscd <nome_pacote> 
@@ -75,7 +81,15 @@ rosls <nome_pacote
 ```
 
 ## Criar os próprios pacotes: 
-Antes de criar novos pacotes, é preciso criar uma Área de Trabalho (Workspace).
+Antes de criar pacotes próprios, é necessário criar um **workspace**, que é o ambiente onde os pacotes serão desenvolvidos.
+
+A estrutura padrão de um workspace ROS (catkin) é:
+```
+workspace/
+ ├── src/
+ ├── build/
+ ├── devel/
+```
 
 #### Criar um workspace catkin
 1) Criar uma pasta "catkin_ws" no diretório \<home> do usuário Linux:
@@ -117,11 +131,13 @@ Vamos criar um novo pacote chamado beginner_tutorials, e esse pacote terá depen
 
 Para isso, primeiro temos que **estar dentro da pasta do workspace/src** e usar o comando:
 ```bash
+cd <workspace>/src
 catkin_create_pkg <nome_pacote> <dependência1> <dependência2> ... <dependênciaN>
 ```
 
 **Exemplo:** 
 ```bash
+cd catkin_ws
 catkin_create_pkg beginner_tutorial std_msgs rospy roscpp
 ```
 
@@ -136,15 +152,17 @@ begginer_tutorial/
 Tanto include quanto scripts são pastas de código fonte. 
 CMakeLists.txt é arquivo de compilação e possui a lista dos nós, mensagens e serviços do pacote.
 Já o package.xml é o arquivo de configuração do pacote. 
+OBS: O scripts normalmente é criado de forma manual. 
 
 
 #### Criar um Nó em Python
+Um node em ROS nada mais é do que um programa executável, no caso de Python, é um script em Python.
 Primeiro, vamos entrar na pasta do pacote (nesse caso, beginner_tutorial):
 ```bash
 cd beginner_tutorial
 ```
 
-Agora, se não existe a pasta scripts não existe ainda, criar ela:
+Agora, vamos criar a pasta *scripts*:
 ```bash
 mkdir scripts
 ```
@@ -152,25 +170,37 @@ mkdir scripts
 Vamos entrar nela e criar o nó
 ```bash
 cd scripts
+
+# Criando o nó
 wget https://raw.githubusercontent.com/ros/ros_tutorials/noetic-devel/rospy_tutorials/001_talker_listener/talker.py
 
 # Para dar permissão ao arquivo
 chmod +x talker.py
+# Até o momento não foi necessário
+# Pode ser que se ocorra um problema, seja a falta disso.
 ```
-OBS: Esse wget baixa um arquivo chamado *talker.py*, que está representando o nosso nó, ou seja, o nó python é um programa em python. 
+OBS: Esse wget baixa um arquivo chamado *talker.py*, que está representando o nosso nó. Se não quisermos usar ele, criamos um programa em Python ou C++ com o que queremos que o nó faça. 
 
-Agora precisamos realizar a **Instalação de executáveis do pacote**, que é informar o que foi feito usando o CMakeLists.txt (gedit) na pasta principal do pacote incluindo as seguintes linhas no final:
+#### Registro do Nó no pacote
+Agora precisamos realizar a **instalação de executáveis do pacote**, que é informar o que foi feito atraveś do CMakeLists.txt (usando gedit), isto é, fazer com que o ROS reconheça formalmente o script como parte do pacote. Sendo assim, na pasta principal do pacote (no nosso exemplo é beginner_tutorial) faremos:
+```bash
+gedit CMakeLists.txt
+```
+E ao final do arquivo colocaremos as seguintes instruções:
 ```text
 catkin_install_python(PROGRAMS
   scripts/talker.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 ```
+SALVE o arquivo!
 
 **PERGUNTINHA:** Por que fazemos isso? 
 O comando catkin_install_python é uma regra de instalação do sistema de build do ROS (catkin) utilizada para registrar scripts como executáveis oficiais de um pacote. Ao utilizá-lo, informamos ao ROS que aquele arquivo deve ser tratado como parte integrante do pacote e, portanto, copiado para um diretório padrão durante o processo de instalação (catkin_make install). Sem essa etapa, o script continua existindo apenas dentro da pasta scripts do workspace e funciona localmente, mas não está formalmente instalado nem padronizado dentro da estrutura do ROS. Já com essa regra, o script passa a ser reconhecido como um executável do pacote, permitindo melhor organização, portabilidade e uso em outros ambientes ou sistemas.
-Para cada nó que criarmos, precisa ser feito isso.
 
+OBS: Para cada nó que criarmos, precisa ser feito isso.
+
+#### Compilação e configuração do ambiente
 Agora, vamos adicionar este workspace ao ROS para que rospack, roscd, rosls e rosrun o reconheçam: 
 ```bash
 cd catkin_ws
@@ -178,7 +208,12 @@ catkin_make
 # Permitindo que o rosrun reconheça o pacote
 source devel/setup.bash
 ```
-OBS: Após o comando *catkin_make*, deve ser reconhecido o novo nó: 
+
+
+Esse comando atualiza as variáveis de ambiente do ROS, permitindo que ele reconheça os novos pacotes e nodes criados.
+Sem esse passo, comandos como `rosrun` não encontrarão o pacote.
+
+OBS: Após o comando *catkin_make*, deve ser reconhecido o novo nó com algo parecido com: 
 ```text
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- ~~  traversing 1 packages in topological order:
@@ -200,15 +235,19 @@ OBS: Após o comando *catkin_make*, deve ser reconhecido o novo nó:
 rosrun beginner_tutorial talker.py
 ```
 
-**ATENÇÃO:** Sempre que for rodar o nó criado, é necessário estar no ambiente de trabalho (a pasta workspace) e rodar o comando: 
+**ATENÇÃO:** Sempre que abrir um novo terminal para trabalhar com o workspace, é necessário executar:
 ```bash
 source devel/setup.bash
 ```
 Se não fizer isso, o ROS nem reconhece o pacote criado. 
 
 
+
+
+
 ---
-## OBS: No meu caso, deu erro por conta da versão do python e a utilização do pyenv.
+# Erros 
+Na hora de executar o comando `catkin_make`, houve um problema por conta da versão do python e a utilização do pyenv ao invés do python do sistema. 
 
 ```bash
 pedro@pedro-Aspire-A515-54G:~/catkin_ws$ catkin_make
