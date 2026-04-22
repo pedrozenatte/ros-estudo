@@ -40,7 +40,7 @@ source devel/setup.bash
 ```bash
 roscore # Um terminal
 rosrun turtlesim turtlesim_node # Outro terminal
-rosrun turtle_cleaner rotate.py # Outro terminal
+rosrun turtle_cleaner gotogoal.py # Outro terminal
 ```
 
 ## Conceitos Básicos Importantes: 
