@@ -2,6 +2,7 @@
 
 O **roslaunch** é uma ferramenta do ROS utilizada para iniciar **múltiplos nodes de forma automatizada e organizada**, a partir de um único comando. Ele resolve um problema comum no uso do ROS:
 - a necessidade de abrir vários terminais e executar manualmente cada node com `rosrun`.
+
 Diferente do que foi descrito inicialmente, ao usar `roslaunch` **não é necessário executar manualmente o `roscore`**, pois ele já inicia o ROS Master automaticamente caso ainda não esteja rodando. Isso torna o processo mais simples e menos propenso a erros.
 
 #### Ideia geral
