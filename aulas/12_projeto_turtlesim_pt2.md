@@ -1,5 +1,5 @@
-# Projeto TurtleSim - Parte 1
-# Criando um nó "move.py" para o TurtleSim
+# Projeto TurtleSim - Parte 2
+# Criando um nó "rotate.py" para o TurtleSim
 **Fonte:** https://wiki.ros.org/turtlesim/Tutorials/Rotating%20Left%20and%20Right
 
 O objetivo será criar um nó denominado rotate.py que controla o movimneto rotacional da tartaruga no TurtleSim (só Publisher). 
@@ -35,7 +35,7 @@ catkin_make
 source devel/setup.bash
 ```
 
-#### Executar o nó 'move.py' no pacote
+#### Executar o nó 'rotate.py' no pacote
 ```bash
 roscore # Um terminal
 rosrun turtlesim turtlesim_node # Outro terminal
