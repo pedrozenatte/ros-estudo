@@ -30,7 +30,7 @@ chmod u+x move.py
 ```
 OBS: "chmod" é o comando linux que muda o modo de um arquivo, e o "u+x" indica que o arquivo passa a ser executável (x) pelo usuário (u). 
 
-#### Editar o arquivo CMakeLists.txt
+#### Editar o arquivo CMakeLists.txt da pasta do pacote
 Vamos fazer com que o ROS reconheça formalmente o script como parte do pacote. Sendo assim, na pasta principal do pacote, turtlesim_cleaner faremos:
 ```bash
 gedit CMakeLists.txt
