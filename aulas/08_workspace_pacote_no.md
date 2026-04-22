@@ -178,6 +178,8 @@ wget https://raw.githubusercontent.com/ros/ros_tutorials/noetic-devel/rospy_tuto
 chmod +x talker.py
 # Até o momento não foi necessário
 # Pode ser que se ocorra um problema, seja a falta disso.
+# Ou, para tornar um executável
+chmode u+x talker.py
 ```
 OBS: Esse wget baixa um arquivo chamado *talker.py*, que está representando o nosso nó. Se não quisermos usar ele, criamos um programa em Python ou C++ com o que queremos que o nó faça. 
 
