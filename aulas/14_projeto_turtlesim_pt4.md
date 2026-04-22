@@ -1,4 +1,4 @@
-# Projeto TurtleSim - Parte 3
+# Projeto TurtleSim - Parte 4 (Final)
 # Controle - Controlando o TurtleSim para ir a um ponto (gotogoal.py)
 
 O objetivo é fazer a turtle "limpar"/percorrer o ambiente, como um aspirador de pó automático (robozinho de aspirar). Aqui, o nó também será tanto publisher quanto subscriber. 

@@ -106,3 +106,6 @@ O ROS possui uma grande comunidade e diversas bibliotecas disponíveis.
 **Site oficial: http://ros.org**
 
 **Documentação oficial: https://wiki.ros.org/**
+
+### Playlist
+**Link:** https://www.youtube.com/playlist?list=PLaJW7rgXka310KR211BFWxLk-8qZ5HaDV
