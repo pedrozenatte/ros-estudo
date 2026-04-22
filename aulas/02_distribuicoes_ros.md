@@ -15,7 +15,7 @@ Exemplo:
 
 ### Importante sobre o ROS1
 
-⚠️ A **última distribuição do ROS1** foi:
+A **última distribuição do ROS1** foi:
 
 - **ROS Noetic Ninjemys**
 - Compatível com **Ubuntu 20.04 (Focal Fossa)**

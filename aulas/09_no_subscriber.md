@@ -42,3 +42,21 @@ catkin_install_python(PROGRAMS
 Sobre o NÓ: Esse nó vai se subscrever no tópico /chatter. 
 
 #### Compilação e configuração do ambiente
+Agora, vamos adicionar este workspace ao ROS para que rospack, roscd, rosls e rosrun o reconheçam: 
+```bash
+cd catkin_ws
+catkin_make
+# Permitindo que o rosrun reconheça o pacote
+source devel/setup.bash
+```
+
+##### Como executar o nó criado ("listener.py") no pacote beginner_tutorial?
+```bash
+rosrun beginner_tutorial listener.py
+```
+
+**ATENÇÃO:** Sempre que abrir um novo terminal para trabalhar com o workspace, é necessário executar:
+```bash
+source devel/setup.bash
+```
+Se não fizer isso, o ROS nem reconhece o pacote criado. 
