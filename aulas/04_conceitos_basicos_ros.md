@@ -71,7 +71,7 @@ Pacotes são conjuntos de Nós (Pacotes também podem ter definição de mensage
 Vamos pensar nos pacotes como pastas organizadas de funcionalidades.
 
 ## Tópicos
-**O que são Tópicos no ROS?**
+**O que são Tópicos no ROS?** 
 Tópicos são **canais de comunicação assíncronos** entre nodes, como se fosse um tubo que liga Nós publicadores com Nós subscritores. 
 Dessa forma, quando um Nó do tipo publicador é executado, ele cria um Tópico. 
 Cada tópico possui um nome único, e sempre começa com o caractere `"/"`. 

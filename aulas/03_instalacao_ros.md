@@ -46,3 +46,14 @@ Verificar a versão instalada:
 ```bash
 rosversion -d
 ```
+
+---
+
+## Utilizando imagem do ROS com DOCKER
+Acesse o Docker hub do ROS: https://hub.docker.com/_/ros
+
+Nas Tags, pesquise pelo ROS a ser utilizado, mas nesse caso, vamos usar o **noetic**.
+```bash
+docker pull ros:noetic-ros-base-focal
+```
+OBS: Tem outras lá, mas vamos usar essa.
