@@ -142,12 +142,12 @@ catkin_create_pkg beginner_tutorial std_msgs rospy roscpp
 ```
 
 Feito isso, dentro da pasta criada, que no nosso exemplo é beginner_tutorial, teremos que ter a seguinte estrutura: 
-begginer_tutorial/
- ├── CMakeLists.txt
- ├── include
- ├── package.xml
- ├── scripts
- ├── src
+begginer_tutorial/ <br>
+ ├── CMakeLists.txt <br>
+ ├── include <br>
+ ├── package.xml <br>
+ ├── scripts <br>
+ ├── src <br>
 
 Tanto include quanto scripts são pastas de código fonte. 
 CMakeLists.txt é arquivo de compilação e possui a lista dos nós, mensagens e serviços do pacote.
