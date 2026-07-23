@@ -1,6 +1,14 @@
 # Controlando a TurtleSim
 
 ## Ferramenta 'rqt' (ROS Qt-based framework) 
+Para instalar esse pacote, caso ele não exista, rodar: 
+```bash
+apt update
+apt install -y ros-$ROS_DISTRO-rqt
+apt install -y ros-$ROS_DISTRO-rqt-common-plugins
+apt install -y ros-$ROS_DISTRO-rqt-robot-plugins
+```
+
 Essa ferramenta vai ser um novo nó. 
 O significado: 
 - ROS: sistema de robótica
@@ -58,5 +66,8 @@ rostopic info /turtle1/cmd_vel
 Veremos que tanto o Nó 1 quando o Nó 2 estão publicando dados por esse tópico para o Nó */turtlesim*.
 
 Utilizando o `rqt_graph`, podemos ver isso de maneira gráfica. 
+```bash
+rqt_graph
+```
 
 ![Fluxo de Dados - rqt_graph](../imagens/rosgraph.png)
