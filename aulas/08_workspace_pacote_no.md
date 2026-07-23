@@ -154,6 +154,13 @@ CMakeLists.txt é arquivo de compilação e possui a lista dos nós, mensagens e
 Já o package.xml é o arquivo de configuração do pacote. 
 OBS: O scripts normalmente é criado de forma manual. 
 
+**OBS:** Quando criamos códigos fonte em C++, deixamos em catkin_ws/src/nome_pacote/src/. Já quando é em Python, deixamos em catkin_ws/src/nome_pacote/scripts. 
+| Caminho           | Conteúdo             |
+| ----------------- | -------------------- |
+| `catkin_ws/src/`  | Pacotes ROS          |
+| `pacote/src/`     | Código C++           |
+| `pacote/scripts/` | Scripts/nodes Python |
+
 
 #### Criar um Nó em Python do tipo Publisher
 Um node em ROS nada mais é do que um programa executável, no caso de Python, é um script em Python.
