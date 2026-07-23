@@ -20,7 +20,7 @@ source devel/setup.bash
 Até porque, se não o ROS não vai identificar os pacotes da pasta. 
 
 #### Criação de um launchfile
-1) Criar (se não existir) a pasta "launche" no pacote:
+1) Criar (se não existir) a pasta "launch" no pacote:
 ```bash
 roscd <nome_pacote>
 mkdir launch
