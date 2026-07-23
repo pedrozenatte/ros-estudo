@@ -1,0 +1,13 @@
+# Catkin build files
+catkin_ws/build/
+catkin_ws/devel/
+
+# Logs
+catkin_ws/logs/
+
+# Python
+__pycache__/
+*.pyc
+
+
+# Estamos versionando apenas aquilo necessário para reconstruir o projeto, pois o que é produzido pela compilação do catkin_make não é necessário.
