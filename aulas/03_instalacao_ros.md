@@ -81,3 +81,44 @@ Se não quiser ficar rodando o comando que realiza a configuração de ambiente,
 echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 ```
 OBS: Isso precisa ser feito toda vez que o container é criado. 
+
+#### ATENÇÃO: Quando estamos trabalhando com container, muitas vezes não vão vir pacotes instalados. Além disso, o container não tem acesso gráfico disponível, então precisamos fazer algumas adaptações. 
+
+Para instalar um pacote, dentro do container:
+```bash
+apt update
+apt install -y ros-$ROS_DISTRO-nomePacote
+
+# $ROS_DISTRO, no nosso caso, é o noetic
+
+# Recarregue as configurações de ambiente:
+source /opt/ros/$ROS_DISTRO/setup.bash
+```
+
+Exemplo para o noetic:
+```bash
+apt update
+apt install -y ros-noetic-turtlesim
+
+source /opt/ros/noetic/setup.bash
+
+rosrun turtlesim turtlesim_node
+```
+
+**CONTUDO**, isso apenas não basta, pois precisamos permitir que programas rodando em containers Docker locais acessem o servidor gráfico X11 do computador. Portanto, rode fora do container:
+```bash
+# Para dar permissão
+xhost +local:docker
+
+# Para tirar a permissão
+xhost -local:docker
+```
+Na prática, ele libera o Docker para abrir janelas na sua tela.
+
+Dessa forma, na hora de criar o container, passar o display e o socket do X11:
+```bash
+docker run -dit \
+  --env DISPLAY=$DISPLAY \
+  --volume /tmp/.X11-unix:/tmp/.X11-unix \
+  IMAGEM_DOCKER
+```
