@@ -137,7 +137,7 @@ catkin_create_pkg <nome_pacote> <dependência1> <dependência2> ... <dependênci
 
 **Exemplo:** 
 ```bash
-cd catkin_ws
+cd catkin_ws/src
 catkin_create_pkg beginner_tutorial std_msgs rospy roscpp
 ```
 
